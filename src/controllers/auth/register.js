@@ -1,6 +1,6 @@
 var bcrypt = require("bcryptjs");
 const verification = require("./verification");
-const { mongodb } = require("../../database");
+const { mongodb, mysqldb } = require("../../database");
 const { verify } = require("../../middleware");
 
 const User = mongodb.models.user;
@@ -33,6 +33,23 @@ module.exports = {
                 message: "Password is required!"
             });
         }
+
+        User.create({
+            name: name,
+            email: email?.trim()?.toLowerCase(),
+            emailVerifiedAt: null,
+            password: bcrypt.hashSync(password, 8)
+        })
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while creating the blog."
+                });
+            });
+
 
         const userData = new User({
             name: name,

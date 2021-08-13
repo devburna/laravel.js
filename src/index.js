@@ -3,7 +3,7 @@ const cors = require("cors");
 require("dotenv").config()
 
 const { app } = require("./config");
-const { mongodb } = require("./database");
+const { mysqldb } = require("./database");
 const routes = require("./routes");
 
 // server
@@ -25,13 +25,7 @@ server.use(require("express-session")({ secret: "keyboard cat", resave: true, sa
 
 server.use(routes);
 
-mongodb.mongoose
-    .connect(mongodb.url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: true,
-        useCreateIndex: true
-    })
+mysqldb.sequelize.authenticate()
     .then(() => {
         console.log("Connected to the database!");
 

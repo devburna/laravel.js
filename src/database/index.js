@@ -1,3 +1,4 @@
 module.exports = {
-    mongodb: require("./mongo")
+    mongodb: require("./mongo"),
+    mysqldb: require("./mysql")
 }
