@@ -1,25 +1,29 @@
-const express = require("express");
+const express = require('express');
+
+const middleware = require('../middleware');
+const AuthController = require('../controllers/auth-controller');
+
 const router = express.Router();
 
-const { authentication } = require("../controllers");
-const { auth } = require("../middleware");
-
-// middleware that is specific to this router
-router.use(function timeLog(req, res, next) {
+router.use(function timelog(_, _, next) {
     console.info('Time: ', Date.now());
     next();
-})
-
-router.get("/", (_, res) => {
-    res.send(`Online on ${new Date()}`);
 });
 
-router.post("/signup", authentication.register.main);
+router.get('/', (_, res) => {
+    res.status(200).send({ status: true, message: 'Server is active!' });
+});
 
-router.post("/signin", authentication.login.main);
+router.post('/register', AuthController.register);
 
-router.get("/user", auth, authentication.user.main);
+router.post('/verify', AuthController.verify);
 
-router.post("/verify", authentication.verification.verify);
+router.post('/login', AuthController.login);
+
+router.post('/recover', AuthController.recover);
+
+router.post('/reset', AuthController.reset);
+
+router.get('/user', middleware.auth, AuthController.user);
 
 module.exports = router;
