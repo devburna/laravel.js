@@ -1,16 +1,15 @@
 {
-  "name": "space",
+  "name": "laravel.js",
   "version": "1.0.0",
+  "description": "Slim laravel framework on Node.js",
   "main": "index.js",
-  "author": "Bonaventure Umolu",
-  "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  },
+  "repository": "https://github.com/devburna/laravel.js.git",
+  "author": "Bonaventure Umolu",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
@@ -23,5 +22,8 @@
     "nodemailer": "^6.6.3",
     "nodemailer-express-handlebars": "^4.0.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
