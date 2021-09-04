@@ -1,3 +1,3 @@
 module.exports = {
-    user: require('./mysql/user')
-}
+    userModel: require('./user-model')
+};

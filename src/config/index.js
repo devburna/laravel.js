@@ -9,13 +9,13 @@ config.app = {
     name: process.env.APP_NAME,
     key: process.env.APP_KEY,
     url: process.env.APP_URL,
-    port: process.env.APP_PORT,
+    port: process.env.PORT || 8000,
     timezone: process.env.APP_TIMEZONE
 };
 
 config.db = {
     driver: mongoose,
-    url: process.env.DB_URL || 'mongodb://localhost:27017/space'
+    url: process.env.DB_URL || 'mongodb://localhost:27017/auth'
 };
 
 config.mail = {
